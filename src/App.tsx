@@ -1,8 +1,63 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from './components/Search';
+
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+}
+
+const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+const API_OPTIONS = {
+	method: 'GET',
+	headers: {
+		accept: 'application/json',
+		Authorization: `Bearer ${API_KEY}`,
+	},
+};
 
 export default function App() {
 	const [searchTerm, setSearchTerm] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
+	const [moviesList, setMoviesList] = useState<Movie[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const fetchMovies = async () => {
+		setIsLoading(true);
+		setErrorMessage('');
+
+		try {
+			const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+			const response = await fetch(endpoint, API_OPTIONS);
+
+			if (!response.ok) {
+				throw new Error('Failed to fetch movies');
+			}
+
+			const data = await response.json();
+
+			if (data.Response === 'False') {
+				setErrorMessage(data.Error || 'Failed to fetch movies');
+				setMoviesList([]);
+				return;
+			}
+
+			setMoviesList(data.results || []);
+		} catch (error) {
+			console.error(error);
+			setErrorMessage('Error fetching movies. Please try again later.');
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		fetchMovies();
+	}, []);
 
 	return (
 		<main>
@@ -15,9 +70,29 @@ export default function App() {
 						Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the
 						Hassle
 					</h1>
+
+					<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 				</header>
 
-				<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+				<section className='all-movies'>
+					<h2>All Movies</h2>
+
+					{isLoading ? (
+						<p>Loading...</p>
+					) : errorMessage ? (
+						<p>{errorMessage}</p>
+					) : (
+						moviesList.map((movie) => (
+							<div key={movie.id}>
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+									alt={movie.title}
+								/>
+								<p>{movie.title}</p>
+							</div>
+						))
+					)}
+				</section>
 			</div>
 		</main>
 	);

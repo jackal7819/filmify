@@ -10,6 +10,7 @@ export default function Search({ searchTerm, setSearchTerm }: SearchProps) {
 				<img src='./search.svg' alt='Search Icon' />
 				<input
 					type='text'
+					name='search'
 					placeholder='Search through thousands of movies'
 					value={searchTerm}
 					onChange={(event) => setSearchTerm(event.target.value)}
