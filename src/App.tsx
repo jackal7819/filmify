@@ -49,6 +49,7 @@ export default function App() {
 			}
 
 			setMoviesList(data.results || []);
+			
 		} catch (error) {
 			console.error(error);
 			setErrorMessage('Error fetching movies. Please try again later.');
