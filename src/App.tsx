@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import MovieCard, { type Movie } from './components/MovieCard';
 import Search from './components/Search';
 import Spinner from './components/Spinner';
-
-interface Movie {
-	id: number;
-	title: string;
-	overview: string;
-	poster_path: string;
-}
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
@@ -77,22 +71,18 @@ export default function App() {
 				</header>
 
 				<section className='all-movies'>
-					<h2>All Movies</h2>
+					<h2 className='mt-10'>All Movies</h2>
 
 					{isLoading ? (
 						<Spinner />
 					) : errorMessage ? (
 						<p>{errorMessage}</p>
 					) : (
-						moviesList.map((movie) => (
-							<div key={movie.id}>
-								<img
-									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-									alt={movie.title}
-								/>
-								<p>{movie.title}</p>
-							</div>
-						))
+						<ul>
+							{moviesList.map((movie) => (
+								<MovieCard key={movie.id} movie={movie} />
+							))}
+						</ul>
 					)}
 				</section>
 			</div>
