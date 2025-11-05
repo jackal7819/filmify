@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+
 import Search from './components/Search';
+import Spinner from './components/Spinner';
 
 interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
+	id: number;
+	title: string;
+	overview: string;
+	poster_path: string;
 }
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
@@ -78,7 +80,7 @@ export default function App() {
 					<h2>All Movies</h2>
 
 					{isLoading ? (
-						<p>Loading...</p>
+						<Spinner />
 					) : errorMessage ? (
 						<p>{errorMessage}</p>
 					) : (
