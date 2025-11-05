@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Filmify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern movie browsing application built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## 📋 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   [About](#about)
+-   [Features](#features)
+-   [Tech Stack](#tech-stack)
+-   [Getting Started](#getting-started)
+    -   [Prerequisites](#prerequisites)
+    -   [Installation](#installation)
+    -   [Running the App](#running-the-app)
+-   [Project Structure](#project-structure)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
+-   [Contact](#contact)
 
-## React Compiler
+## 🔍 About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Filmify is a movie-browser application designed to deliver a smooth and enjoyable user experience for discovering films. Built with modern web technologies, it allows you to browse, search, and view details for films—all with a clean UI and performant architecture.
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   Browse a list of popular movies.
+-   Search for specific titles.
+-   View detailed information on each movie (e.g., synopsis, cast, rating).
+-   Responsive design that works on desktop and mobile.
+-   Built with performance and maintainability in mind (TypeScript, Vite, ESLint).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+-   **Framework**: React (v19)
+-   **Language**: TypeScript
+-   **Build Tool**: Vite
+-   **Linting**: ESLint
+-   **Styling**: CSS / (or mention any CSS-framework if used)
+-   **API**: (Specify movie database API used, e.g., TMDb)
+-   **Hosting**: (If you deploy it, mention e.g., Vercel)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   Node.js (version 16 or higher recommended)
+-   npm or Yarn
+
+### Installation
+
+```bash
+git clone https://github.com/jackal7819/filmify.git
+cd filmify
+npm install   # or `yarn install`
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Running the App
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev    # starts development server
+npm run build  # builds production version
+npm run preview # preview the build locally
 ```
+
+Then open http://localhost:5173￼ (or the port shown in your console) in your browser.
+
+### 🗂 Project Structure
+
+```text
+filmify/
+├─ public/
+│   └─ index.html
+├─ src/
+│   ├─ assets/
+│   ├─ components/
+│   ├─ pages/
+│   ├─ hooks/
+│   ├─ services/
+│   ├─ types/
+│   ├─ App.tsx
+│   └─ main.tsx
+├─ .gitignore
+├─ package.json
+├─ tsconfig.json
+├─ vite.config.ts
+└─ README.md
+```
+
+Feel free to adapt this structure as your features evolve.
+
+### 🎮 Usage
+
+    1.	Launch the app via the dev script.
+    2.	Browse the movies list or use the search bar to find a title.
+    3.	Click on a movie to view its details (runtime, synopsis, actors, etc.).
+    4.	(Optional future feature) Add to favorites, create watch-list, etc.
+
+### 🤝 Contributing
+
+Contributions are welcome! Here’s how you can help: 1. Fork the repository. 2. Create a new branch (git checkout -b feature/YourFeature). 3. Make your changes and test your feature. 4. Commit your changes (git commit -m 'Add some feature'). 5. Push to the branch (git push origin feature/YourFeature). 6. Open a Pull Request and describe your changes.
+
+Please make sure to follow the existing coding conventions and update tests/documentation as needed.
+
+### 📄 License
+
+This project is licensed under the MIT License.
+See the LICENSE￼ file for details.
+
+### 💬 Contact
+
+Created by @jackal7819￼ — feel free to reach out with thoughts or suggestions.
